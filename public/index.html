@@ -1,0 +1,94 @@
+<!--
+  @author: Awais Nazeer (ZRR Gujjar)
+  @email: awaisnazeer07@gmail.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free OCR - Image to Text Converter</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><i class="fas fa-file-alt"></i> Free OCR Tool</h1>
+      <p>Extract text from images without any API costs</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="upload-section">
+      <div class="upload-container" id="upload-container">
+        <div class="upload-area" id="upload-area">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <h3>Drag & Drop Image</h3>
+          <p>Or <span>browse files</span></p>
+          <input type="file" id="file-input" accept="image/*" hidden>
+        </div>
+        <div class="image-preview" id="image-preview">
+          <img src="" id="preview-image" alt="Preview">
+          <div class="preview-info">
+            <span id="file-name">filename.jpg</span>
+            <button id="change-btn">Change</button>
+          </div>
+        </div>
+      </div>
+      <button id="extract-btn" class="extract-btn">Extract Text <i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <section class="result-section" id="result-section">
+      <div class="result-header">
+        <h2>Extracted Text</h2>
+        <div class="result-actions">
+          <button id="copy-btn" title="Copy to clipboard"><i class="fas fa-copy"></i></button>
+          <button id="download-btn" title="Download as TXT"><i class="fas fa-download"></i></button>
+        </div>
+      </div>
+      <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p>Processing image...</p>
+      </div>
+      <div class="result-content">
+        <textarea id="result-text" readonly placeholder="Extracted text will appear here..."></textarea>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-infinity"></i>
+          <h3>Unlimited & Free</h3>
+          <p>No API costs, no limits on usage, completely free</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Privacy First</h3>
+          <p>Your images are processed locally, no data stored</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-language"></i>
+          <h3>Multiple Languages</h3>
+          <p>Supports text extraction in various languages</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Responsive Design</h3>
+          <p>Works perfectly on desktop, tablet, and mobile</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Free OCR Tool. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html> 
