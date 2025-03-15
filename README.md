@@ -1,4 +1,4 @@
-# 📝 Free OCR Web Application
+# 📝 Professional OCR Web Application
 
 <div align="center">
   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
@@ -9,23 +9,23 @@
 </div>
 
 <p align="center">
-  A completely free and open-source web application for extracting text from images using OCR (Optical Character Recognition) technology without relying on paid APIs.
+  A professional-grade OCR application for extracting text from images with advanced features including handwriting recognition and table extraction.
 </p>
-
 <div align="center">
   <strong>Developed by:</strong> Awais Nazeer (ZRR Gujjar) | <a href="mailto:awaisnazeer07@gmail.com">awaisnazeer07@gmail.com</a>
 </div>
 
-## ✨ Features
+## ✨ Advanced Features
 
-- 🆓 **Completely Free**: No API costs or hidden charges
+- 🖋️ **Handwriting Recognition**: Optimized algorithms for extracting handwritten text
+- 📊 **Table Detection & Extraction**: Recognize tabular data and export as CSV/JSON
+- 🌐 **Multi-language Support**: Recognize text in 25+ languages with high accuracy
+- 🎚️ **Image Preprocessing**: Enhance image quality for better OCR results
+- 🔄 **Batch Processing**: Process multiple images at once to save time
 - 📱 **Fully Responsive**: Works on all devices (mobile, tablet, desktop)
-- 🖼️ **Image to Text**: Extract text from any image with high accuracy
-- 🚀 **Fast Processing**: Uses Tesseract.js for efficient OCR processing
-- 🔒 **Privacy First**: All processing happens locally, no data is sent to external servers
-- 💾 **Save & Export**: Copy or download extracted text as TXT file
-- 🎨 **Modern UI**: Beautiful and intuitive user interface
-- 🌐 **Multi-language Support**: OCR support for various languages
+- 🧠 **Intelligent Content Detection**: Automatically identifies content types
+- 💾 **Multiple Export Options**: Save results as TXT, CSV, or JSON
+- 🔍 **Detailed Analysis**: View confidence scores and processing statistics
 
 ## 📋 Table of Contents
 
@@ -48,7 +48,7 @@
 ### Prerequisites
 
 Before you begin, ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v14.x or higher)
+- [Node.js](https://nodejs.org/) (v18.x or higher)
 - npm (comes with Node.js)
 
 ### Installation
@@ -153,28 +153,16 @@ ocr-api/
 
 ## 📚 Technologies Used
 
-- **Backend**
-  - [Node.js](https://nodejs.org/): JavaScript runtime
-  - [Express.js](https://expressjs.com/): Web framework
-  - [Tesseract.js](https://github.com/naptha/tesseract.js): OCR engine
-  - [Multer](https://github.com/expressjs/multer): File upload middleware
-
-- **Frontend**
-  - [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5): Markup language
-  - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS): Styling
-  - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Client-side programming
-  - [Font Awesome](https://fontawesome.com/): Icons
+- **Node.js**: JavaScript runtime built on Chrome's V8 JavaScript engine.
+- **Express.js**: Fast, unopinionated, minimalist web framework for Node.js.
+- **Tesseract.js**: Pure JavaScript OCR for 100+ Languages.
+- **Sharp**: High-performance image processing.
+- **Languagedetect**: Language detection library.
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.

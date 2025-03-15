@@ -7,19 +7,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free OCR - Image to Text Converter</title>
+  <title>Professional OCR - Advanced Image to Text Converter</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <header>
     <div class="container">
-      <h1><i class="fas fa-file-alt"></i> Free OCR Tool</h1>
-      <p>Extract text from images without any API costs</p>
+      <h1><i class="fas fa-file-alt"></i> Professional OCR Tool</h1>
+      <p>Extract text, handwriting & tables from images with high accuracy</p>
     </div>
   </header>
 
   <main class="container">
+    <section class="settings-section">
+      <div class="settings-grid">
+        <div class="setting-group">
+          <label for="ocr-mode">Recognition Mode:</label>
+          <div class="select-wrapper">
+            <select id="ocr-mode" class="custom-select">
+              <option value="text">Regular Text</option>
+              <option value="handwriting">Handwriting</option>
+              <option value="table">Table/Data</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="language">Language:</label>
+          <div class="select-wrapper">
+            <select id="language" class="custom-select">
+              <option value="eng">English</option>
+              <!-- More languages will be loaded dynamically -->
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="preprocessing">Image Preprocessing:</label>
+          <div class="select-wrapper">
+            <select id="preprocessing" class="custom-select">
+              <option value="none">None</option>
+              <option value="grayscale">Grayscale</option>
+              <option value="binarize">Binarize (Black & White)</option>
+              <option value="contrast">Enhance Contrast</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="upload-section">
       <div class="upload-container" id="upload-container">
         <div class="upload-area" id="upload-area">
@@ -36,48 +74,118 @@
           </div>
         </div>
       </div>
+      <div class="advanced-upload-options">
+        <div class="toggle-batch">
+          <input type="checkbox" id="batch-mode" class="toggle-checkbox">
+          <label for="batch-mode" class="toggle-label">
+            <span class="toggle-text">Batch Processing</span>
+          </label>
+          <div class="toggle-hint">
+            <i class="fas fa-info-circle"></i>
+            <span class="hint-text">Process multiple images at once</span>
+          </div>
+        </div>
+        <div id="batch-upload-container" class="batch-upload-container">
+          <label class="batch-label">Multiple files (up to 10):</label>
+          <input type="file" id="batch-file-input" accept="image/*" multiple hidden>
+          <button id="batch-browse-btn" class="secondary-btn">Browse Files</button>
+          <div id="batch-files-list" class="batch-files-list"></div>
+        </div>
+      </div>
       <button id="extract-btn" class="extract-btn">Extract Text <i class="fas fa-arrow-right"></i></button>
     </section>
 
     <section class="result-section" id="result-section">
       <div class="result-header">
-        <h2>Extracted Text</h2>
+        <h2>Extracted Content</h2>
         <div class="result-actions">
           <button id="copy-btn" title="Copy to clipboard"><i class="fas fa-copy"></i></button>
           <button id="download-btn" title="Download as TXT"><i class="fas fa-download"></i></button>
+          <button id="download-csv-btn" title="Download as CSV" class="table-action"><i class="fas fa-table"></i></button>
+          <button id="download-json-btn" title="Download as JSON" class="table-action"><i class="fas fa-code"></i></button>
         </div>
       </div>
       <div class="loader" id="loader">
         <div class="spinner"></div>
-        <p>Processing image...</p>
+        <p>Processing image with advanced OCR...</p>
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="processing-status">Initializing OCR engine...</p>
+      </div>
+      <div class="result-tabs">
+        <button class="tab-btn active" data-tab="text">Text</button>
+        <button class="tab-btn" data-tab="table">Table View</button>
+        <button class="tab-btn" data-tab="hocr">HTML (hOCR)</button>
+        <button class="tab-btn" data-tab="stats">Details</button>
       </div>
       <div class="result-content">
-        <textarea id="result-text" readonly placeholder="Extracted text will appear here..."></textarea>
+        <div class="tab-content active" id="text-tab">
+          <textarea id="result-text" readonly placeholder="Extracted text will appear here..."></textarea>
+        </div>
+        <div class="tab-content" id="table-tab">
+          <div id="table-container" class="table-container">
+            <p class="tab-placeholder">Table data will be displayed here if detected.</p>
+          </div>
+        </div>
+        <div class="tab-content" id="hocr-tab">
+          <div id="hocr-content" class="hocr-content">
+            <p class="tab-placeholder">HTML output with text position data will be available here.</p>
+          </div>
+        </div>
+        <div class="tab-content" id="stats-tab">
+          <div class="stats-container">
+            <div class="stat-item">
+              <span class="stat-label">Recognition Mode:</span>
+              <span id="stat-mode" class="stat-value">Text</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Language:</span>
+              <span id="stat-language" class="stat-value">English</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Confidence Score:</span>
+              <span id="stat-confidence" class="stat-value">0%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Processing Time:</span>
+              <span id="stat-time" class="stat-value">0s</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Word Count:</span>
+              <span id="stat-words" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Character Count:</span>
+              <span id="stat-chars" class="stat-value">0</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="features-section">
-      <h2>Features</h2>
+      <h2>Professional Features</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <i class="fas fa-infinity"></i>
-          <h3>Unlimited & Free</h3>
-          <p>No API costs, no limits on usage, completely free</p>
+          <i class="fas fa-handwriting"></i>
+          <h3>Handwriting Recognition</h3>
+          <p>Advanced AI models that can understand human handwriting</p>
         </div>
         <div class="feature-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Privacy First</h3>
-          <p>Your images are processed locally, no data stored</p>
+          <i class="fas fa-table"></i>
+          <h3>Table Detection</h3>
+          <p>Extract structured data from tables in images or documents</p>
         </div>
         <div class="feature-card">
           <i class="fas fa-language"></i>
-          <h3>Multiple Languages</h3>
-          <p>Supports text extraction in various languages</p>
+          <h3>Multi-language Support</h3>
+          <p>Recognize text in 25+ languages with high accuracy</p>
         </div>
         <div class="feature-card">
-          <i class="fas fa-mobile-alt"></i>
-          <h3>Responsive Design</h3>
-          <p>Works perfectly on desktop, tablet, and mobile</p>
+          <i class="fas fa-bolt"></i>
+          <h3>Batch Processing</h3>
+          <p>Process multiple images at once to save time</p>
         </div>
       </div>
     </section>
@@ -85,7 +193,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2023 Free OCR Tool. All rights reserved.</p>
+      <p>&copy; 2023 Professional OCR Tool by Awais Nazeer. All rights reserved.</p>
     </div>
   </footer>
 

@@ -1,16 +1,19 @@
 {
   "name": "ocr-api",
   "version": "1.0.0",
-  "description": "Free OCR Web App that converts images to text",
+  "description": "Professional OCR Web App for advanced image-to-text conversion",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "download-langs": "node scripts/download-tesseract-langs.js"
   },
   "keywords": [
     "ocr",
     "image-to-text",
-    "tesseract"
+    "tesseract",
+    "handwriting",
+    "table-detection"
   ],
   "author": "Awais Nazeer (ZRR Gujjar) <awaisnazeer07@gmail.com>",
   "license": "MIT",
@@ -19,7 +22,11 @@
     "multer": "^1.4.5-lts.1",
     "tesseract.js": "^4.1.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "jimp": "^0.22.10",
+    "languagedetect": "^2.0.0",
+    "node-fetch": "^2.6.9",
+    "sharp": "^0.32.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
